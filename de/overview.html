@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioNTech (BNTX) Investment-Briefing</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --bntx: #0DA6AB; --bntx-soft: #0da6ab1a;
+    --mrna: #6D5AE6; --mrna-soft: #6d5ae61a;
+    --good: #17825a; --good-soft: #17825a14;
+    --warn: #b8791a; --risk: #c0392b; --risk-soft: #c0392b12;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --bntx: #2fc0c4; --bntx-soft: #2fc0c422; --mrna: #9b8bff; --mrna-soft: #9b8bff20;
+      --good: #34c98a; --good-soft: #34c98a1a; --warn: #e0a63e; --risk: #f0715f; --risk-soft: #f0715f18;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600} .langbar .home:hover{color:var(--ink)}
+  .langbar .langs{display:inline-flex;gap:4px}
+  .langbar .langs a{padding:3px 10px;border-radius:7px;color:var(--ink-3);font-weight:600}
+  .langbar .langs a:hover{color:var(--ink)}
+  .langbar .langs a.on{background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .langs a.on{background:rgba(47,192,196,.16);color:#2fc0c4}}
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--bntx); font-weight: 600; margin-bottom: 14px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--bntx); border-radius: 2px; }
+  h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.1; margin: 0 0 6px; letter-spacing: -.02em; text-wrap: balance; }
+  h1 .tick { color: var(--ink-3); font-weight: 500; }
+  .thesis { font-size: clamp(15px, 2.4vw, 18px); color: var(--ink-2); max-width: 68ch; margin: 12px 0 0; text-wrap: pretty; }
+  .asof { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 34px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 15px; box-shadow: var(--shadow); }
+  .tile .lab { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  .tile .val { font-size: 27px; font-weight: 680; margin-top: 8px; letter-spacing: -.02em; }
+  .tile .sub { font-size: 12.5px; color: var(--ink-2); margin-top: 3px; }
+  .up { color: var(--good); font-weight: 600; } .down { color: var(--risk); font-weight: 600; }
+  section { margin-bottom: 34px; }
+  h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+  h2 .n { font-family: var(--mono); font-size: 11px; color: var(--bntx); border: 1px solid var(--bntx); border-radius: 5px; padding: 1px 6px; letter-spacing: 0; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+  .track-wrap { padding: 8px 6px 4px; }
+  .track { position: relative; height: 8px; background: var(--panel-2); border-radius: 6px; margin: 42px 0 46px; }
+  .track .fill { position: absolute; top: 0; bottom: 0; left: 5.7%; width: 56.5%; background: linear-gradient(90deg, var(--bntx-soft), var(--bntx)); border-radius: 6px; }
+  .mk { position: absolute; top: 50%; transform: translate(-50%,-50%); }
+  .mk .dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--panel); box-shadow: 0 0 0 1px var(--line); }
+  .mk .cap { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; text-align: center; }
+  .mk .cap.top { bottom: 20px; } .mk .cap.bot { top: 20px; }
+  .mk .cap .p { font-size: 16px; font-weight: 700; }
+  .mk .cap .t { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; }
+  .track-note { font-size: 13px; color: var(--ink-2); text-align: center; margin-top: 2px; }
+  .tbl-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 600px; }
+  th, td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+  thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.dim { color: var(--ink-2); font-weight: 600; width: 24%; }
+  .co { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; }
+  .co::before { content: ""; width: 10px; height: 10px; border-radius: 3px; }
+  .co.b::before { background: var(--bntx); } .co.m::before { background: var(--mrna); }
+  .th-b { color: var(--bntx); } .th-m { color: var(--mrna); }
+  .land { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .lc { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .lc::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .lc.lead::before { background: var(--good); } .lc.bntx::before { background: var(--bntx); } .lc.follow::before { background: var(--ink-3); }
+  .lc .rank { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+  .lc.lead .rank { color: var(--good); } .lc.bntx .rank { color: var(--bntx); } .lc.follow .rank { color: var(--ink-3); }
+  .lc h3 { margin: 8px 0 3px; font-size: 16px; }
+  .lc .drug { font-size: 12.5px; color: var(--ink-3); font-family: var(--mono); margin-bottom: 10px; }
+  .lc p { margin: 0; font-size: 13px; color: var(--ink-2); }
+  .cat { display: flex; flex-direction: column; }
+  .ce { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line-2); }
+  .ce:last-child { border-bottom: none; }
+  .weight { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+  .bars { display: flex; gap: 3px; }
+  .bars i { width: 7px; height: 16px; border-radius: 2px; background: var(--line); display: block; }
+  .w4 i:nth-child(-n+4){ background: var(--risk); } .w3 i:nth-child(-n+3){ background: var(--warn); }
+  .w2 i:nth-child(-n+2){ background: var(--bntx); } .w1 i:nth-child(-n+1){ background: var(--ink-3); }
+  .weight .wl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); font-weight: 600; }
+  .ce .body h4 { margin: 0 0 3px; font-size: 15px; } .ce .body p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .verdict { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .vc { border-radius: 14px; padding: 18px 20px; border: 1px solid var(--line); }
+  .vc.bull { background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 30%, transparent); }
+  .vc.bear { background: var(--risk-soft); border-color: color-mix(in srgb, var(--risk) 30%, transparent); }
+  .vc .vh { font-weight: 700; font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .vc.bull .vh { color: var(--good); } .vc.bear .vh { color: var(--risk); }
+  .vc ul { margin: 0; padding-left: 18px; } .vc li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; } .vc li:last-child { margin-bottom: 0; }
+  .bottom-line { margin-top: 16px; padding: 16px 20px; background: var(--panel-2); border-radius: 14px; font-size: 14.5px; color: var(--ink); }
+  .bottom-line b { color: var(--bntx); }
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+  @media (max-width: 720px) { .tiles { grid-template-columns: repeat(2, 1fr); } .land { grid-template-columns: 1fr; } .verdict { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="langbar"><a class="home" href="index.html">← Start</a><span class="langs"><a href="../overview.html">中文</a><a href="../en/overview.html">EN</a><a class="on" href="overview.html">DE</a></span></nav>
+  <header class="head">
+    <span class="eyebrow">Investment-Briefing · Biotech</span>
+    <h1>BioNTech <span class="tick">SE · BNTX</span></h1>
+    <p class="thesis">Ein Turnaround vom Typ „viel Cash + hohe Chance in der Onkologie": Die COVID-Cashcow versiegt, und die gesamte Bewertung hängt nun davon ab, ob die BNT327-Bispecific-Pipeline liefert.</p>
+    <div class="asof">Daten per Mitte 2026 · Gemischte Währungen (BNTX bilanziert in EUR, Moderna in USD)</div>
+  </header>
+
+  <div class="tiles">
+    <div class="tile"><div class="lab">Aktienkurs</div><div class="val tnum">$94</div><div class="sub"><span class="down">−75%+</span> vom COVID-Hoch</div></div>
+    <div class="tile"><div class="lab">Ø Kursziel</div><div class="val tnum">$129,56</div><div class="sub"><span class="up">+38%</span> Potenzial</div></div>
+    <div class="tile"><div class="lab">Cash-Reserven</div><div class="val tnum">€17,2 Mrd.</div><div class="sub">Dickes Sicherheitspolster</div></div>
+    <div class="tile"><div class="lab">Analysten-Rating</div><div class="val">Moderate<br>Buy</div><div class="sub">19 Analysten · 14 Kauf/4 Halten/1 Verkauf</div></div>
+  </div>
+
+  <section>
+    <h2><span class="n">01</span> Kurs vs. Analysten-Kursziel-Spanne</h2>
+    <div class="card track-wrap">
+      <div class="track">
+        <div class="fill"></div>
+        <div class="mk" style="left:5.7%"><div class="cap top"><span class="p tnum" style="color:var(--risk)">$94</span><br><span class="t">Jetzt / Spannen-Tief</span></div><div class="dot" style="background:var(--risk)"></div></div>
+        <div class="mk" style="left:62.2%"><div class="cap bot"><span class="p tnum" style="color:var(--bntx)">$129,56</span><br><span class="t">Ø Kursziel</span></div><div class="dot" style="background:var(--bntx)"></div></div>
+        <div class="mk" style="left:97%"><div class="cap top"><span class="p tnum" style="color:var(--good)">$158</span><br><span class="t">Höchstes Ziel</span></div><div class="dot" style="background:var(--good)"></div></div>
+      </div>
+      <p class="track-note">Der Kurs liegt genau am <b>untersten Rand</b> der Analysten-Zielspanne — die schlechten Nachrichten sind weitgehend eingepreist; das Potenzial hängt allein an den klinischen Daten.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> BNTX vs. Moderna: Zwei Transformationspfade</h2>
+    <div class="card tbl-scroll">
+      <table>
+        <thead><tr><th>Dimension</th><th class="th-b"><span class="co b">BioNTech (BNTX)</span></th><th class="th-m"><span class="co m">Moderna (MRNA)</span></th></tr></thead>
+        <tbody>
+          <tr><td class="dim">Hauptfokus</td><td>Onkologie (Therapeutika)</td><td>Atemwegs-Impfstoffportfolio (prophylaktisch)</td></tr>
+          <tr><td class="dim">Kern-Asset</td><td>BNT327-Bispecific + BMS-Deal</td><td>Grippe-/COVID-Kombi & RSV-Impfstoffe</td></tr>
+          <tr><td class="dim">Cash-Reserven</td><td>~€17,2 Mrd. (sehr dick)</td><td>~$7,5 Mrd., voraussichtlich Rückgang auf $4,5–5,0 Mrd. bis Jahresende</td></tr>
+          <tr><td class="dim">Umsatztrend</td><td>2026E €2,0–2,3 Mrd., weiter rückläufig</td><td>Ziel bis +10%, Stabilisierung</td></tr>
+          <tr><td class="dim">Zugelassene Produkte</td><td>Keine neuen (weiter COVID-abhängig)</td><td>4 zugelassene Atemwegsprodukte</td></tr>
+          <tr><td class="dim">Profil</td><td>Höhere Unsicherheit, aber größere Chance & viel Cash</td><td>Höhere Sicherheit, aber begrenztes Potenzial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> Das PD-(L)1 × VEGF-Bispecific-Rennen</h2>
+    <div class="land">
+      <div class="lc lead"><div class="rank">◆ Führend bei Lungenkrebs</div><h3>Akeso + Summit</h3><div class="drug">Ivonescimab · PD-1×VEGF</div><p>Das einzige Medikament mit Head-to-Head-Daten, das Keytruda schlug — senkte das Progressions-/Sterberisiko bei NSCLC um 50% und entfachte das ganze Feld.</p></div>
+      <div class="lc bntx"><div class="rank">◆ Differenzierte Strategie</div><h3>BioNTech + BMS</h3><div class="drug">BNT327 · PD-L1×VEGF</div><p>Bindet den Liganden PD-L1 statt den Rezeptor. Meidet den direkten Lungen-Kampf; zielt auf Brust (ORR 73,8%), Darm, Leber, SCLC (85% Ansprechen).</p></div>
+      <div class="lc follow"><div class="rank">◆ Schnelle Verfolger</div><h3>Merck & andere</h3><div class="drug">mehrere · über BD-Deals</div><p>Einstieg über Partnerschaften. Das Feld muss den Überlebensvorteil in Phase 3 noch bestätigen — manche zweifeln bereits am Target.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span> Wichtige Katalysatoren, nächste 12 Monate</h2>
+    <div class="card cat">
+      <div class="ce"><div class="weight"><div class="bars w4"><i></i><i></i><i></i><i></i></div><span class="wl">Höchste</span></div><div class="body"><h4>BNT327 Phase-3-Top-Line-Daten</h4><p>8 globale Phase-3-Studien mit BMS liefern Ergebnisse. Gute Daten → mögliche Neubewertung auf $150+; schwache Daten → könnten unter die $94-Marke fallen. <b>Die einzige entscheidende Variable.</b></p></div></div>
+      <div class="ce"><div class="weight"><div class="bars w3"><i></i><i></i><i></i><i></i></div><span class="wl">Mittel-hoch</span></div><div class="body"><h4>Updates von Fachkongressen</h4><p>ASCO / ELCC veröffentlichen laufend Daten zu Brust, Darm und Leber — jedes ist ein kurzfristiger Katalysator.</p></div></div>
+      <div class="ce"><div class="weight"><div class="bars w2"><i></i><i></i><i></i><i></i></div><span class="wl">Mittel</span></div><div class="body"><h4>Kapitalmaßnahmen & Governance</h4><p>Das Tempo des $1-Mrd.-Rückkaufs stützt; die Gründer gründen bis Jahresende ein Next-Gen-mRNA-Unternehmen aus — der Führungswechsel gilt als Sorge.</p></div></div>
+      <div class="ce"><div class="weight"><div class="bars w1"><i></i><i></i><i></i><i></i></div><span class="wl">Eingepreist</span></div><div class="body"><h4>Quartalszahlen</h4><p>Sinkender Umsatz und laufende Verluste sind weitgehend absorbiert; wenig Volatilität, sofern die Prognose nicht stark verfehlt wird.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span> Risiko/Ertrag-Fazit</h2>
+    <div class="verdict">
+      <div class="vc bull"><div class="vh">▲ Bullen-These</div><ul><li>€17,2 Mrd. Cash = kein Überlebensrisiko selbst nach Jahren von Verlusten</li><li>Starke frühe BNT327-Daten + große Rückendeckung durch BMS</li><li>Decke und Margen der Onkologie übersteigen Impfstoffe bei Weitem</li><li>Aktie bereits am Spannen-Tief; schlechte Nachrichten eingepreist</li></ul></div>
+      <div class="vc bear"><div class="vh">▼ Bären-These</div><ul><li>Verluste für 3+ Jahre erwartet, kein positiver Cashflow</li><li>Bewertung hängt am binären Ausgang einer einzigen Pipeline</li><li>Das PD-1/VEGF-Feld hatte jüngst klinische Fehlschläge</li><li>Führungswechsel + Ausführungsrisiko</li></ul></div>
+    </div>
+    <div class="bottom-line"><b>In einem Satz:</b> BNTX ist im Kern ein „optionsartiger" Biotech-Wert — ein dickes Cash-Polster unten, Onkologie-Potenzial oben, dazwischen Jahre von Verlusten und eine binäre Wette. Geeignet für Anleger, die hohe Volatilität aushalten und 3–5 Jahre auf BNT327 warten können; nicht für jene, die stetige Erträge suchen. <b>Vor allem ein Signal beobachten: die Phase-3-Daten von BNT327.</b></div>
+  </section>
+
+  <p class="disc">⚠️ Nur zur Information, <b>keine Anlageberatung</b>. Biotech-Aktien sind hochvolatil — ein einzelnes Studienergebnis kann den Kurs um ±20% bewegen. Quellen u. a. MarketBeat, Public.com, BioNTech IR, BioSpace, Citeline, StockTitan, Stand Mitte 2026, ggf. veraltet. Bitte eigenständig prüfen und Fachleute konsultieren.</p>
+</div>
+</body>
+</html>

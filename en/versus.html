@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BNT327 vs. Ivonescimab — Head to Head</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --a: #0DA6AB; --a-soft: #0da6ab14; --a-line: #0da6ab40;
+    --b: #6D5AE6; --b-soft: #6d5ae614; --b-line: #6d5ae640;
+    --good: #17825a; --warn: #b8791a;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --a: #2fc0c4; --a-soft: #2fc0c41c; --a-line: #2fc0c455; --b: #9b8bff; --b-soft: #9b8bff1c; --b-line: #9b8bff55;
+      --good: #34c98a; --warn: #e0a63e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600} .langbar .home:hover{color:var(--ink)}
+  .langbar .langs{display:inline-flex;gap:4px}
+  .langbar .langs a{padding:3px 10px;border-radius:7px;color:var(--ink-3);font-weight:600}
+  .langbar .langs a:hover{color:var(--ink)}
+  .langbar .langs a.on{background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .langs a.on{background:rgba(47,192,196,.16);color:#2fc0c4}}
+  .head { text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 12px; }
+  h1 { font-size: clamp(24px, 4.5vw, 34px); line-height: 1.15; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  h1 .va { color: var(--a); } h1 .vb { color: var(--b); } h1 .vs { color: var(--ink-3); font-weight: 500; margin: 0 10px; font-size: .8em; }
+  .sub { font-size: 14.5px; color: var(--ink-2); margin: 14px auto 0; max-width: 64ch; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; position: relative; }
+  .vsbadge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; width: 46px; height: 46px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--ink-2); box-shadow: var(--shadow); }
+  .idc { border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--panel); }
+  .idc.a { border-top: 3px solid var(--a); } .idc.b { border-top: 3px solid var(--b); }
+  .idc .role { font-size: 11.5px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+  .idc.a .role { color: var(--a); } .idc.b .role { color: var(--b); }
+  .idc h2 { margin: 8px 0 2px; font-size: 21px; letter-spacing: -.01em; }
+  .idc .gen { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); margin-bottom: 12px; }
+  .idc .kv { display: flex; flex-direction: column; gap: 9px; }
+  .idc .kv div { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; border-bottom: 1px solid var(--line-2); padding-bottom: 8px; }
+  .idc .kv div:last-child { border-bottom: none; padding-bottom: 0; }
+  .idc .kv .k { color: var(--ink-3); } .idc .kv .val { font-weight: 650; text-align: right; }
+  section { margin: 32px 0; }
+  h3.sec { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+  .matrix { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+  .row { display: grid; grid-template-columns: 1fr 132px 1fr; align-items: stretch; border-bottom: 1px solid var(--line-2); }
+  .row:last-child { border-bottom: none; }
+  .row .dim { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); background: var(--panel-2); padding: 14px 8px; }
+  .row .side { padding: 14px 18px; font-size: 13.5px; color: var(--ink-2); display: flex; align-items: center; }
+  .row .side.a { border-left: 3px solid var(--a-line); }
+  .row .side.b { border-right: 3px solid var(--b-line); text-align: right; justify-content: flex-end; }
+  .row .side b { color: var(--ink); }
+  .win.a { background: var(--a-soft); } .win.b { background: var(--b-soft); }
+  .lead-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
+  .side.b .lead-tag { margin-left: 0; margin-right: 8px; order: -1; }
+  .lead-tag.a { color: var(--a); background: var(--a-soft); border: 1px solid var(--a-line); }
+  .lead-tag.b { color: var(--b); background: var(--b-soft); border: 1px solid var(--b-line); }
+  .board { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bcard { border-radius: 16px; padding: 20px 22px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel); }
+  .bcard.a { border-left: 3px solid var(--a); } .bcard.b { border-left: 3px solid var(--b); }
+  .bcard .bh { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .bcard.a .bh { color: var(--a); } .bcard.b .bh { color: var(--b); }
+  .bcard .bs { font-size: 12.5px; color: var(--ink-3); margin-bottom: 12px; }
+  .bcard ul { margin: 0; padding-left: 17px; }
+  .bcard li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 7px; } .bcard li:last-child { margin-bottom: 0; } .bcard li b { color: var(--ink); }
+  .takeaway { margin-top: 20px; padding: 18px 22px; background: var(--panel-2); border-radius: 14px; font-size: 14.5px; color: var(--ink); border: 1px solid var(--line); }
+  .takeaway .th { font-weight: 700; margin-bottom: 6px; }
+  .takeaway b.a { color: var(--a); } .takeaway b.b { color: var(--b); }
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+  @media (max-width: 720px) {
+    .cards { grid-template-columns: 1fr; } .vsbadge { display: none; }
+    .row { grid-template-columns: 1fr; }
+    .row .dim { justify-content: flex-start; text-align: left; }
+    .row .side.a { border-left: none; border-top: 2px solid var(--a-line); }
+    .row .side.b { border-right: none; border-bottom: 2px solid var(--b-line); text-align: left; justify-content: flex-start; }
+    .side.b .lead-tag { order: 0; margin-left: 8px; margin-right: 0; }
+    .board { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="langbar"><a class="home" href="index.html">← Home</a><span class="langs"><a href="../versus.html">中文</a><a class="on" href="versus.html">EN</a><a href="../de/versus.html">DE</a></span></nav>
+  <header class="head">
+    <div class="eyebrow">PD-(L)1 × VEGF bispecific race · head to head</div>
+    <h1><span class="va">BNT327</span><span class="vs">VS</span><span class="vb">Ivonescimab</span></h1>
+    <p class="sub">The two leads of the hottest field — similar mechanistic paths, very different positioning. Who leads, who differentiates, and will they end up coexisting?</p>
+  </header>
+
+  <div class="cards">
+    <div class="vsbadge">VS</div>
+    <div class="idc a">
+      <div class="role">◆ Challenger / differentiated play</div>
+      <h2>BNT327</h2>
+      <div class="gen">pumitamig · BioNTech + BMS</div>
+      <div class="kv">
+        <div><span class="k">Target</span><span class="val">PD-L1 × VEGF-A</span></div>
+        <div><span class="k">Binding site</span><span class="val">Ligand PD-L1 (on tumor)</span></div>
+        <div><span class="k">Developers</span><span class="val">German + US pharma</span></div>
+        <div><span class="k">Approval status</span><span class="val">Global Phase 3 · none yet</span></div>
+      </div>
+    </div>
+    <div class="idc b">
+      <div class="role">◆ Leader / first approval in hand</div>
+      <h2>Ivonescimab</h2>
+      <div class="gen">ivonescimab · Akeso + Summit</div>
+      <div class="kv">
+        <div><span class="k">Target</span><span class="val">PD-1 × VEGF</span></div>
+        <div><span class="k">Binding site</span><span class="val">Receptor PD-1 (on T cell)</span></div>
+        <div><span class="k">Developers</span><span class="val">Chinese + US pharma</span></div>
+        <div><span class="k">Approval status</span><span class="val">Approved in China · FDA review</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h3 class="sec">Point by point</h3>
+    <div class="matrix">
+      <div class="row">
+        <div class="side a">Binds <b>PD-L1</b> (tumor side), aiming to localize anti-VEGF activity in the tumor microenvironment and reduce systemic exposure</div>
+        <div class="dim">Mechanism</div>
+        <div class="side b">Binds <b>PD-1</b> (T-cell side); its tetravalent structure raises PD-1 affinity ~18× in the presence of VEGF</div>
+      </div>
+      <div class="row">
+        <div class="side a">Global Phase 3 ongoing, <b>no approvals yet</b></div>
+        <div class="dim">Approval</div>
+        <div class="side b win b"><span class="lead-tag b">Leads</span>Approved in China for 1L PD-L1+ NSCLC; <b>FDA decision Nov 2026</b></div>
+      </div>
+      <div class="row">
+        <div class="side a">Strong early data, but <b>trails</b> in lung cancer</div>
+        <div class="dim">Lung-cancer battlefield</div>
+        <div class="side b win b"><span class="lead-tag b">Leads</span>Only drug to <b>beat Keytruda</b> head-to-head (HARMONi-2); HARMONi-6 significant OS benefit (HR 0.66)</div>
+      </div>
+      <div class="row">
+        <div class="side a win a"><b>TNBC ORR 73.8%</b> · SCLC 85% response · broad footprint<span class="lead-tag a">Leads</span></div>
+        <div class="dim">Beyond<br>lung</div>
+        <div class="side b">Effort still centered on lung cancer; other solid tumors relatively behind</div>
+      </div>
+      <div class="row">
+        <div class="side a win a"><b>50/50 global split</b> + BMS backing + BioNTech's €17.2B cash<span class="lead-tag a">Leads</span></div>
+        <div class="dim">Resources /<br>backing</div>
+        <div class="side b">Summit runs ex-China; smaller in scale and cash</div>
+      </div>
+      <div class="row">
+        <div class="side a">Sidesteps the lung red ocean; targets <b>breast / SCLC / colorectal / liver</b></div>
+        <div class="dim">Positioning</div>
+        <div class="side b">Uses lung cancer as its base, expanding globally on its first approval</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="sec">Who leads where</h3>
+    <div class="board">
+      <div class="bcard b">
+        <div class="bh">Ivonescimab · first-mover edge</div>
+        <div class="bs">Both timing and evidence are a step ahead</div>
+        <ul>
+          <li>Only drug with <b>head-to-head data beating Keytruda</b>, which ignited the field</li>
+          <li><b>Already commercialized</b> in China; FDA decision near — a real lead</li>
+          <li>HARMONi-6 delivered an <b>overall-survival (OS) benefit</b> — the hardest endpoint</li>
+          <li>Risk: global sales & supply still to be proven by Summit</li>
+        </ul>
+      </div>
+      <div class="bcard a">
+        <div class="bh">BNT327 · latecomer's depth</div>
+        <div class="bs">Trades differentiation and resources for room</div>
+        <ul>
+          <li>Skips the lung red ocean; grabs <b>breast/SCLC/colorectal/liver</b></li>
+          <li><b>BMS 50/50 backing</b> + BioNTech's huge cash = ample firepower</li>
+          <li>20+ trials, 10+ indications — the broadest footprint</li>
+          <li>Risk: <b>no approvals yet</b> — everything rides on Phase 3 delivering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="takeaway">
+      <div class="th">Bottom line: likely not a fight to the death, but a division of territory</div>
+      <b class="b">Ivonescimab</b> has built a hard-to-shake first-mover position in lung cancer; <b class="a">BNT327</b> smartly sidesteps the head-on fight, using BMS backing and a broader set of indications to grab growth beyond lung. The real decider is whether each drug's Phase 3 delivers an <b>overall-survival benefit</b> in its chosen tumors — which is also the single decisive variable for the BNTX share price.
+    </div>
+  </section>
+
+  <p class="disc">⚠️ Information only, <b>not investment/medical advice</b>. Mechanism, trial and approval details are public disclosures, as of mid-2026 and subject to revision; cross-trial data are not head-to-head and cannot be compared directly. Sources: OncLive, Cancer Therapy Advisor, The Lancet (HARMONi-6), BMS / BioNTech IR, BioSpace.</p>
+</div>
+</body>
+</html>

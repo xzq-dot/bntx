@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioNTech Gründer-Ausgründung</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --new: #0DA6AB; --new-soft: #0da6ab14; --new-line: #0da6ab40;
+    --old: #6D5AE6; --old-soft: #6d5ae614; --old-line: #6d5ae640;
+    --warn: #b8791a; --warn-soft: #b8791a12;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --new: #2fc0c4; --new-soft: #2fc0c41c; --new-line: #2fc0c455; --old: #9b8bff; --old-soft: #9b8bff1c; --old-line: #9b8bff55;
+      --warn: #e0a63e; --warn-soft: #e0a63e18;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600} .langbar .home:hover{color:var(--ink)}
+  .langbar .langs{display:inline-flex;gap:4px}
+  .langbar .langs a{padding:3px 10px;border-radius:7px;color:var(--ink-3);font-weight:600}
+  .langbar .langs a:hover{color:var(--ink)}
+  .langbar .langs a.on{background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .langs a.on{background:rgba(47,192,196,.16);color:#2fc0c4}}
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--new); font-weight: 600; margin-bottom: 14px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--new); border-radius: 2px; }
+  h1 { font-size: clamp(25px, 4.4vw, 36px); line-height: 1.12; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  .thesis { font-size: clamp(15px, 2.3vw, 17px); color: var(--ink-2); max-width: 68ch; margin: 14px 0 0; }
+  section { margin-bottom: 34px; }
+  h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+  h2 .n { font-family: var(--mono); font-size: 11px; color: var(--new); border: 1px solid var(--new); border-radius: 5px; padding: 1px 6px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+  .founders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .fc { display: flex; gap: 16px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .fc .av { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #fff; background: var(--new); }
+  .fc:nth-child(2) .av { background: var(--old); }
+  .fc h3 { margin: 2px 0 2px; font-size: 18px; } .fc .zh { font-size: 13px; color: var(--ink-3); font-family: var(--mono); }
+  .fc .role { margin-top: 8px; font-size: 13.5px; color: var(--ink-2); }
+  .marry { text-align: center; font-size: 13px; color: var(--ink-3); margin-top: 12px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sp { border-radius: 16px; padding: 20px 22px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel); }
+  .sp.new { border-top: 3px solid var(--new); } .sp.old { border-top: 3px solid var(--old); }
+  .sp .lab { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+  .sp.new .lab { color: var(--new); } .sp.old .lab { color: var(--old); }
+  .sp h3 { margin: 8px 0 3px; font-size: 18px; } .sp .who { font-size: 13px; color: var(--ink-3); margin-bottom: 12px; }
+  .sp ul { margin: 0; padding-left: 17px; } .sp li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 7px; } .sp li:last-child { margin-bottom: 0; } .sp li b { color: var(--ink); }
+  .flow { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fnode { flex: 1; min-width: 230px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 13px; padding: 15px 18px; }
+  .fnode .ft { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; margin-bottom: 6px; }
+  .fnode.n1 .ft { color: var(--old); } .fnode.n2 .ft { color: var(--new); }
+  .fnode p { margin: 0; font-size: 13.5px; color: var(--ink-2); } .fnode p b { color: var(--ink); }
+  .flowarrow { color: var(--ink-3); font-size: 22px; }
+  .tl { display: flex; flex-direction: column; }
+  .te { display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line-2); }
+  .te:last-child { border-bottom: none; }
+  .te .when { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--new); }
+  .te .what h4 { margin: 0 0 3px; font-size: 15px; } .te .what p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .risk-box { border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); background: var(--warn-soft); border-radius: 14px; padding: 18px 20px; }
+  .risk-box .rh { font-weight: 700; color: var(--warn); font-size: 14px; margin-bottom: 8px; }
+  .risk-box p { margin: 0; font-size: 13.5px; color: var(--ink-2); } .risk-box b { color: var(--ink); }
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+  @media (max-width: 720px) { .founders, .split { grid-template-columns: 1fr; } .flowarrow { transform: rotate(90deg); align-self: center; width: 100%; text-align: center; } .te { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="langbar"><a class="home" href="index.html">← Start</a><span class="langs"><a href="../founders.html">中文</a><a href="../en/founders.html">EN</a><a class="on" href="founders.html">DE</a></span></nav>
+  <header class="head">
+    <span class="eyebrow">Unternehmensführung · Gründer-Übergang</span>
+    <h1>Gründer trennen sich ab: zurück zur Next-Gen-mRNA</h1>
+    <p class="thesis">Angekündigt im März 2026 — die beiden Mitgründer verlassen BioNTech, um ein unabhängiges Unternehmen an der mRNA-Front aufzubauen. Eine „Trennung, aber kein Bruch" — und zugleich eine der Sorgen des Marktes rund um BNTX.</p>
+  </header>
+
+  <section>
+    <h2><span class="n">01</span> Die beiden Gründer</h2>
+    <div class="card">
+      <div class="founders">
+        <div class="fc"><div class="av">UŞ</div><div><h3>Uğur Şahin</h3><div class="zh">Aktueller CEO</div><div class="role">Wissenschaftliche und strategische Führung; sein Team war Pionier der mRNA-basierten personalisierten Krebsimpfstoffe.</div></div></div>
+        <div class="fc"><div class="av">ÖT</div><div><h3>Özlem Türeci</h3><div class="zh">Aktuelle CMO</div><div class="role">Chief Medical Officer; tief verwurzelt in Krebs-Immuntherapie und Neoantigen-Impfstoffen.</div></div></div>
+      </div>
+      <div class="marry">Die beiden sind ein Ehepaar und Mitgründer von BioNTech · beide wechseln gemeinsam zum neuen Unternehmen</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> Die Trennung: Arbeitsteilung</h2>
+    <div class="split">
+      <div class="sp new">
+        <div class="lab">◆ Das neue Unternehmen der Gründer</div>
+        <h3>Next-Generation-mRNA</h3>
+        <div class="who">Geführt von Şahin & Türeci · Name offen</div>
+        <ul>
+          <li>Fokus auf mRNA-Plattformtechnik mit <b>disruptivem Potenzial</b></li>
+          <li>Zurück zu den Wurzeln: <b>personalisierte Krebsimpfstoffe</b> (Neoantigen) und weitere Frontfelder</li>
+          <li>Konzentriert auf frühe, explorative Forschung</li>
+          <li>Arbeitet unabhängig, mit eigenen Ressourcen und Finanzierung</li>
+        </ul>
+      </div>
+      <div class="sp old">
+        <div class="lab">◆ Das verbleibende BioNTech</div>
+        <h3>Multi-Produkt-Pharmaunternehmen</h3>
+        <div class="who">Ziel: integriertes Handelsunternehmen bis 2030</div>
+        <ul>
+          <li>Fokus auf <b>Spätphasen-Klinik + Kommerzialisierung</b></li>
+          <li>Kern: <b>BNT327-Bispecific</b>, ADCs, mRNA-Pipeline</li>
+          <li>~<b>15 Onkologie-Phase-3</b>-Studien bis Ende 2026 erwartet</li>
+          <li>Lagert risikoreiche Frühforschung an die Gründer aus, die sie am besten kennen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> Wie die Interessen verknüpft sind (Trennung, kein Bruch)</h2>
+    <div class="card">
+      <div class="flow">
+        <div class="fnode n1"><div class="ft">BioNTech gibt</div><p>Bringt bestimmte <b>mRNA-Technologierechte</b> in das neue Unternehmen ein</p></div>
+        <div class="flowarrow">⇄</div>
+        <div class="fnode n2"><div class="ft">erhält zurück</div><p>Eine <b>Minderheitsbeteiligung</b> + <b>Meilensteinzahlungen</b> + künftige <b>Lizenzgebühren</b></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span> Übergangs-Timeline</h2>
+    <div class="card tl">
+      <div class="te"><div class="when">2026.03</div><div class="what"><h4>Ausgründungsplan angekündigt</h4><p>BioNTech und die Gründer verkünden gemeinsam die Absicht, ein neues mRNA-Unternehmen zu gründen.</p></div></div>
+      <div class="te"><div class="when">Ende 2026.06</div><div class="what"><h4>Bindende Vereinbarung unterzeichnet</h4><p>Eine rechtsverbindliche Ausgründungsvereinbarung wird erwartet.</p></div></div>
+      <div class="te"><div class="when">Ende 2026</div><div class="what"><h4>Führungsübergang abgeschlossen</h4><p>Die beiden verlassen formal ihre aktuellen Rollen, um das neue Unternehmen zu leiten.</p></div></div>
+      <div class="te"><div class="when">Ende 2027</div><div class="what"><h4>Dienstverträge laufen aus</h4><p>Die aktuellen Verträge der Gründer mit BioNTech enden und sichern eine reibungslose Übergabe.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span> Was das für Anleger bedeutet</h2>
+    <div class="risk-box">
+      <div class="rh">⚠ Ein zweischneidiges Schwert</div>
+      <p><b>Chance:</b> Die Gründer kehren an die Front zurück, an der sie brillieren, während das Kern-BioNTech sich voll auf die Kommerzialisierung von Spätphasen-Assets wie BNT327 konzentrieren kann — eine sauberere Arbeitsteilung. <b>Sorge:</b> Der Rückzug der treibenden Köpfe aus dem Tagesgeschäft ist ein klares <b>Governance- und Ausführungsrisiko</b> für BNTX — ein Faktor, der genannt wurde, als Analysten die Kursziele senkten. <b>Zudem:</b> Die offizielle Formulierung lautet „Next-Generation-mRNA-Plattform", nicht KI als Kernrichtung — manche Online-Deutungen sind kritisch zu prüfen.</p>
+    </div>
+  </section>
+
+  <p class="disc">⚠️ Nur zur Information, <b>keine Anlageberatung</b>. Diese Regelungen sind offengelegte Pläne, Stand Mitte 2026, mit Änderungsvorbehalt bei Konditionen und Zeitplan. Quellen: BioNTech Investor-Relations-Mitteilungen, STAT News, BioPharma Dive, European Biotechnology Magazine.</p>
+</div>
+</body>
+</html>

@@ -115,6 +115,18 @@
 </style>
 
 <div class="wrap">
+  <style>
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600}
+  .langbar .home:hover{color:var(--ink)}
+  .langbar .langs{display:inline-flex;gap:4px}
+  .langbar .langs a{padding:3px 10px;border-radius:7px;color:var(--ink-3);font-weight:600}
+  .langbar .langs a:hover{color:var(--ink)}
+  .langbar .langs a.on{background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .langs a.on{background:rgba(47,192,196,.16);color:#2fc0c4}}
+  </style>
+  <nav class="langbar"><a class="home" href="index.html">← 首页</a><span class="langs"><a class="on" href="founders.html">中文</a><a href="en/founders.html">EN</a><a href="de/founders.html">DE</a></span></nav>
   <header class="head">
     <span class="eyebrow">公司治理 · 创始人过渡</span>
     <h1>创始人分家：回归下一代 mRNA</h1>

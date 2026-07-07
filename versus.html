@@ -123,6 +123,18 @@
 </style>
 
 <div class="wrap">
+  <style>
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600}
+  .langbar .home:hover{color:var(--ink)}
+  .langbar .langs{display:inline-flex;gap:4px}
+  .langbar .langs a{padding:3px 10px;border-radius:7px;color:var(--ink-3);font-weight:600}
+  .langbar .langs a:hover{color:var(--ink)}
+  .langbar .langs a.on{background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .langs a.on{background:rgba(47,192,196,.16);color:#2fc0c4}}
+  </style>
+  <nav class="langbar" style="text-align:left"><a class="home" href="index.html">← 首页</a><span class="langs"><a class="on" href="versus.html">中文</a><a href="en/versus.html">EN</a><a href="de/versus.html">DE</a></span></nav>
   <header class="head">
     <div class="eyebrow">PD-(L)1 × VEGF 双抗赛道 · 正面对决</div>
     <h1><span class="va">BNT327</span><span class="vs">VS</span><span class="vb">依沃西单抗</span></h1>
