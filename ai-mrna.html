@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 与下一代 mRNA 专题</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --ai: #0DA6AB; --ai-soft: #0da6ab14; --ai-line: #0da6ab40;
+    --sec: #6D5AE6; --sec-soft: #6d5ae614;
+    --good: #17825a; --good-soft: #17825a14; --warn: #b8791a; --warn-soft: #b8791a12; --risk: #c0392b;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --ai: #2fc0c4; --ai-soft: #2fc0c41c; --ai-line: #2fc0c455; --sec: #9b8bff; --sec-soft: #9b8bff1c;
+      --good: #34c98a; --good-soft: #34c98a18; --warn: #e0a63e; --warn-soft: #e0a63e18; --risk: #f0715f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+    --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+    --line: #2c322f; --line-2: #242a28;
+    --ai: #2fc0c4; --ai-soft: #2fc0c41c; --ai-line: #2fc0c455; --sec: #9b8bff; --sec-soft: #9b8bff1c;
+    --good: #34c98a; --good-soft: #34c98a18; --warn: #e0a63e; --warn-soft: #e0a63e18; --risk: #f0715f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"] {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --ai: #0DA6AB; --ai-soft: #0da6ab14; --ai-line: #0da6ab40; --sec: #6D5AE6; --sec-soft: #6d5ae614;
+    --good: #17825a; --good-soft: #17825a14; --warn: #b8791a; --warn-soft: #b8791a12; --risk: #c0392b;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600} .langbar .home:hover{color:var(--ink)}
+  .langbar .only{padding:3px 10px;border-radius:7px;background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .only{background:rgba(47,192,196,.16);color:#2fc0c4}}
+
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ai); font-weight: 600; margin-bottom: 14px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--ai); border-radius: 2px; }
+  h1 { font-size: clamp(26px, 4.6vw, 38px); line-height: 1.12; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  .thesis { font-size: clamp(15px, 2.3vw, 17px); color: var(--ink-2); max-width: 64ch; margin: 14px 0 0; }
+
+  section { margin-bottom: 34px; }
+  h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+  h2 .n { font-family: var(--mono); font-size: 11px; color: var(--ai); border: 1px solid var(--ai); border-radius: 5px; padding: 1px 6px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+
+  /* myth buster */
+  .myth { border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); background: var(--warn-soft); border-radius: 16px; padding: 20px 22px; }
+  .myth .mh { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--warn); font-size: 15px; margin-bottom: 10px; }
+  .myth p { margin: 0 0 12px; font-size: 14px; color: var(--ink-2); }
+  .myth p:last-child { margin-bottom: 0; } .myth b { color: var(--ink); }
+  .backend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .backend span { font-size: 12.5px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 5px 12px; color: var(--ink-2); }
+
+  /* engine */
+  .engine { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+  .estat { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); }
+  .estat .big { font-size: 30px; font-weight: 720; color: var(--ai); letter-spacing: -.02em; }
+  .estat .cap { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; }
+  .estat .sub { font-size: 12.5px; color: var(--ink-3); margin-top: 10px; border-top: 1px solid var(--line-2); padding-top: 10px; }
+  .tools { display: flex; flex-direction: column; gap: 10px; }
+  .tool { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .tool .tn { font-weight: 700; font-size: 14px; color: var(--sec); font-family: var(--mono); }
+  .tool p { margin: 4px 0 0; font-size: 13px; color: var(--ink-2); }
+
+  /* applications */
+  .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .app { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .app::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--ai); }
+  .app.star::before { background: var(--good); }
+  .app .ah { display: flex; align-items: center; gap: 9px; }
+  .app .ico { font-size: 20px; }
+  .app h3 { margin: 0; font-size: 15.5px; }
+  .app .badge { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--good); background: var(--good-soft); border-radius: 5px; padding: 1px 7px; margin-left: auto; }
+  .app p { margin: 9px 0 0; font-size: 13px; color: var(--ink-2); }
+  .app p b { color: var(--ink); }
+
+  /* metrics */
+  .tbl-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+  thead th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.mdim { font-weight: 650; width: 20%; }
+  tr.hard { background: var(--good-soft); }
+  tr.hard td.mdim { color: var(--good); }
+  .tier { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 1px 7px; border-radius: 5px; }
+  .tier.soft { color: var(--warn); background: var(--warn-soft); }
+  .tier.hard { color: var(--good); background: var(--good-soft); }
+  .metric-note { margin-top: 14px; padding: 14px 18px; background: var(--panel-2); border-radius: 12px; font-size: 13.5px; color: var(--ink); }
+  .metric-note b { color: var(--good); }
+
+  .bottom { margin-top: 4px; padding: 18px 22px; background: var(--panel-2); border-radius: 14px; font-size: 14.5px; color: var(--ink); border: 1px solid var(--line); }
+  .bottom .bh { font-weight: 700; margin-bottom: 6px; }
+  .bottom b.ai { color: var(--ai); }
+
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+
+  @media (max-width: 720px) { .engine { grid-template-columns: 1fr; } .apps { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <nav class="langbar"><a class="home" href="index.html">← 首页</a><span class="only">中文</span></nav>
+  <header class="head">
+    <span class="eyebrow">技术专题 · AI 在 BioNTech 的真实角色</span>
+    <h1>AI 与下一代 mRNA</h1>
+    <p class="thesis">AI 在 BNT327 上作用有限，真正的主战场是下一代 mRNA。这一页拆清楚：AI 用在哪、怎么衡量它有没有用。</p>
+  </header>
+
+  <section>
+    <h2><span class="n">01</span> 先破一个误区</h2>
+    <div class="myth">
+      <div class="mh">⚠ BNT327 不是"AI 设计"出来的</div>
+      <p>BNT327 是从中国普米斯<b>收购/引进</b>的抗体（原名 PM8002），分子在 BioNTech 拿到前就已设计定型。所以 AI 在它的<b>发现环节几乎没起作用</b>——把它叫"AI 药物"并不准确。</p>
+      <p style="margin-bottom:8px">AI 对 BNT327 至多出现在<b>后端环节</b>：</p>
+      <div class="backend"><span>生物标志物 / 患者分层</span><span>临床数据分析、剂量优化</span><span>联合疗法组合筛选</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> BioNTech 的 AI 引擎：InstaDeep</h2>
+    <div class="engine">
+      <div class="estat">
+        <div class="big tnum">€5 亿</div>
+        <div class="cap">2023 年收购 AI 公司 InstaDeep 的对价</div>
+        <div class="sub">带来约 <b>290 名</b> AI / 机器学习 / 生物工程专家，成为 BioNTech 的 AI 中枢</div>
+      </div>
+      <div class="tools">
+        <div class="tool"><div class="tn">DeepChain™</div><p>蛋白设计平台，基础模型基于数十亿氨基酸残基，预测蛋白折叠与抗原呈递。</p></div>
+        <div class="tool"><div class="tn">Bayesian Flow Networks</div><p>贝叶斯流网络，按目标函数迭代优化序列——移液前每天可模拟数千个候选。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> AI 在下一代 mRNA 中的应用</h2>
+    <div class="apps">
+      <div class="app star">
+        <div class="ah"><span class="ico">🎯</span><h3>个性化癌症疫苗</h3><span class="badge">最关键</span></div>
+        <p>从每个病人肿瘤的突变指纹里，<b>预测哪些新抗原（neoantigen）最可能被免疫识别</b>，挑出最该放进 mRNA 疫苗的靶点。也是两位创始人"回归本源"的方向。</p>
+      </div>
+      <div class="app">
+        <div class="ah"><span class="ico">🧬</span><h3>mRNA 序列设计</h3></div>
+        <p>为目标蛋白设计最优 mRNA 序列——优化密码子、稳定性、翻译效率与表达量。最核心的基础应用。</p>
+      </div>
+      <div class="app">
+        <div class="ah"><span class="ico">💉</span><h3>RiboMab™ / RiboCytokine™</h3></div>
+        <p>用 mRNA 在体内直接编码<b>抗体与细胞因子</b>，AI 负责设计和优化这些编码序列。</p>
+      </div>
+      <div class="app">
+        <div class="ah"><span class="ico">📦</span><h3>LNP 递送系统</h3></div>
+        <p>优化把 mRNA 送进细胞的<b>脂质纳米颗粒</b>"外壳"（nanoparticle scaffolds）。</p>
+      </div>
+      <div class="app" style="grid-column:1/-1">
+        <div class="ah"><span class="ico">🔍</span><h3>靶点发现与生物标志物</h3></div>
+        <p>结合公开数据 + 专有数据 + 匿名患者数据，用机器学习<b>发现新的生物学靶点和预测性生物标志物</b>。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span> 怎么衡量 AI 到底有没有用</h2>
+    <div class="card tbl-scroll">
+      <table>
+        <thead><tr><th>维度</th><th>衡量标准</th><th>层级</th></tr></thead>
+        <tbody>
+          <tr><td class="mdim">速度</td><td>靶点→先导分子耗时（周 vs 月）、设计迭代周期</td><td><span class="tier soft">软</span></td></tr>
+          <tr><td class="mdim">通量</td><td>每天能在计算机里模拟 / 筛选多少候选分子</td><td><span class="tier soft">软</span></td></tr>
+          <tr><td class="mdim">预测精度</td><td>预测的结合亲和力 / 折叠 / 免疫原性 vs 实测吻合度</td><td><span class="tier soft">软</span></td></tr>
+          <tr><td class="mdim">成功率</td><td>命中率、候选→先导转化率、临床成功概率提升</td><td><span class="tier soft">软</span></td></tr>
+          <tr class="hard"><td class="mdim">终极硬指标</td><td>有多少 AI 参与设计的分子真正进入临床（IND）、乃至获批</td><td><span class="tier hard">硬</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="metric-note">软指标容易被包装成漂亮 PPT。真正要盯的是<b>最后一项——AI 设计的分子有几个走进临床、几个最终获批</b>。目前 BioNTech 的 AI 更多是"加速内部流程"，尚无一个"AI 设计、成功上市"的旗舰药，需保持清醒。</div>
+  </section>
+
+  <div class="bottom">
+    <div class="bh">一句话总结</div>
+    <b class="ai">BNT327</b> 的 AI 参与度低（收购来的抗体，非 AI 设计）；衡量 AI 价值别看故事，要看<b>进临床 / 获批的分子数</b>；AI 真正的舞台在<b class="ai">下一代 mRNA</b>——尤其是个性化癌症疫苗的新抗原预测。
+  </div>
+
+  <p class="disc">⚠️ 本页为信息整理，<b>不构成投资建议</b>。基于 BioNTech / InstaDeep 公开披露（收购公告、AI Day 2024/2025 等），截至 2026 年年中，可能存在时滞。来源：BioNTech 投资者关系、InstaDeep、BioSpace。</p>
+</div>
+
+</html>
