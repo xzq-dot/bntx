@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>药物模态科普：抗体药 vs mRNA 药</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --ab: #6D5AE6; --ab-soft: #6d5ae614; --ab-line: #6d5ae640;
+    --rna: #0DA6AB; --rna-soft: #0da6ab14; --rna-line: #0da6ab40;
+    --good: #17825a; --good-soft: #17825a14; --warn: #b8791a; --warn-soft: #b8791a12;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --ab: #9b8bff; --ab-soft: #9b8bff1c; --ab-line: #9b8bff55; --rna: #2fc0c4; --rna-soft: #2fc0c41c; --rna-line: #2fc0c455;
+      --good: #34c98a; --good-soft: #34c98a18; --warn: #e0a63e; --warn-soft: #e0a63e18;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+    --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+    --line: #2c322f; --line-2: #242a28;
+    --ab: #9b8bff; --ab-soft: #9b8bff1c; --ab-line: #9b8bff55; --rna: #2fc0c4; --rna-soft: #2fc0c41c; --rna-line: #2fc0c455;
+    --good: #34c98a; --good-soft: #34c98a18; --warn: #e0a63e; --warn-soft: #e0a63e18;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"] {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --ab: #6D5AE6; --ab-soft: #6d5ae614; --ab-line: #6d5ae640; --rna: #0DA6AB; --rna-soft: #0da6ab14; --rna-line: #0da6ab40;
+    --good: #17825a; --good-soft: #17825a14; --warn: #b8791a; --warn-soft: #b8791a12;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .langbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;font-size:12.5px;font-family:var(--sans)}
+  .langbar a{text-decoration:none;transition:color .15s}
+  .langbar .home{color:var(--ink-3);font-weight:600} .langbar .home:hover{color:var(--ink)}
+  .langbar .only{padding:3px 10px;border-radius:7px;background:rgba(13,166,171,.12);color:#0DA6AB;font-weight:700}
+  @media (prefers-color-scheme:dark){.langbar .only{background:rgba(47,192,196,.16);color:#2fc0c4}}
+
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--rna); font-weight: 600; margin-bottom: 14px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--rna); border-radius: 2px; }
+  h1 { font-size: clamp(26px, 4.6vw, 38px); line-height: 1.12; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  .thesis { font-size: clamp(15px, 2.3vw, 17px); color: var(--ink-2); max-width: 64ch; margin: 14px 0 0; }
+
+  section { margin-bottom: 34px; }
+  h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+  h2 .n { font-family: var(--mono); font-size: 11px; color: var(--rna); border: 1px solid var(--rna); border-radius: 5px; padding: 1px 6px; }
+
+  /* two modality columns */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mod { border-radius: 16px; padding: 20px 22px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel); }
+  .mod.ab { border-top: 3px solid var(--ab); } .mod.rna { border-top: 3px solid var(--rna); }
+  .mod .tag { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 4px 11px; border-radius: 20px; }
+  .mod.ab .tag { color: var(--ab); background: var(--ab-soft); } .mod.rna .tag { color: var(--rna); background: var(--rna-soft); }
+  .mod h3 { margin: 12px 0 2px; font-size: 19px; }
+  .mod .one { font-size: 13.5px; color: var(--ink-3); margin-bottom: 14px; }
+  .steps { display: flex; flex-direction: column; gap: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 0; }
+  .step .sn { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+  .mod.ab .step .sn { background: var(--ab); } .mod.rna .step .sn { background: var(--rna); }
+  .step p { margin: 0; font-size: 13.5px; color: var(--ink-2); align-self: center; }
+  .step p b { color: var(--ink); }
+  .mod .egs { margin-top: 14px; border-top: 1px solid var(--line-2); padding-top: 12px; font-size: 13px; color: var(--ink-2); }
+  .mod .egs b { color: var(--ink); }
+
+  /* analogy */
+  .analogy { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .an { background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .an .ah { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
+  .an.ab .ah { color: var(--ab); } .an.rna .ah { color: var(--rna); }
+  .an p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+  /* callout for BNT327 */
+  .callout { border: 1px solid var(--ab-line); background: var(--ab-soft); border-radius: 16px; padding: 20px 22px; }
+  .callout .ch { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ab); font-size: 16px; margin-bottom: 8px; }
+  .callout p { margin: 0; font-size: 14px; color: var(--ink-2); } .callout b { color: var(--ink); }
+
+  /* pipeline map */
+  .pipe { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pc { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .pc::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .pc.r::before { background: var(--rna); } .pc.a::before { background: var(--ab); } .pc.x::before { background: var(--ink-3); }
+  .pc .pt { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+  .pc.r .pt { color: var(--rna); } .pc.a .pt { color: var(--ab); } .pc.x .pt { color: var(--ink-3); }
+  .pc h4 { margin: 6px 0 4px; font-size: 15.5px; }
+  .pc p { margin: 0; font-size: 13px; color: var(--ink-2); }
+  .pc .star { font-size: 10.5px; font-weight: 700; color: var(--good); background: var(--good-soft); border-radius: 5px; padding: 1px 7px; margin-left: 6px; }
+
+  .bottom { padding: 18px 22px; background: var(--panel-2); border-radius: 14px; font-size: 14.5px; color: var(--ink); border: 1px solid var(--line); }
+  .bottom .bh { font-weight: 700; margin-bottom: 6px; }
+  .bottom b.ab { color: var(--ab); } .bottom b.rna { color: var(--rna); }
+
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+
+  @media (max-width: 720px) { .duo, .analogy, .pipe { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <nav class="langbar"><a class="home" href="index.html">← 首页</a><span class="only">中文</span></nav>
+  <header class="head">
+    <span class="eyebrow">药物模态科普 · 别再搞混</span>
+    <h1>抗体药 vs mRNA 药</h1>
+    <p class="thesis">很多人把 BNT327 误当成 mRNA 药。其实它是抗体药——两者是完全不同的技术模态。这一页把区别讲清楚。</p>
+  </header>
+
+  <section>
+    <h2><span class="n">01</span> 两种药，两种工作方式</h2>
+    <div class="duo">
+      <div class="mod ab">
+        <span class="tag">◆ 抗体药（蛋白质）</span>
+        <h3>直接送"成品"</h3>
+        <div class="one">工厂里造好蛋白，直接打进体内用</div>
+        <div class="steps">
+          <div class="step"><span class="sn">1</span><p>在细胞工厂里<b>生产出成品抗体</b>蛋白</p></div>
+          <div class="step"><span class="sn">2</span><p>纯化后制成针剂，<b>注射进体内</b></p></div>
+          <div class="step"><span class="sn">3</span><p>抗体直接结合靶点<b>立刻起效</b></p></div>
+        </div>
+        <div class="egs"><b>例子：</b>BNT327（双抗）、K 药、绝大多数单抗/双抗</div>
+      </div>
+      <div class="mod rna">
+        <span class="tag">◆ mRNA 药（遗传指令）</span>
+        <h3>送"指令"让身体自产</h3>
+        <div class="one">把指令送进细胞，让你自己的身体造蛋白</div>
+        <div class="steps">
+          <div class="step"><span class="sn">1</span><p>把一段 <b>mRNA 指令</b>包进脂质纳米颗粒(LNP)</p></div>
+          <div class="step"><span class="sn">2</span><p>注射后 mRNA <b>进入你的细胞</b></p></div>
+          <div class="step"><span class="sn">3</span><p>你的细胞<b>照指令自己生产</b>目标蛋白（如抗原）</p></div>
+        </div>
+        <div class="egs"><b>例子：</b>新冠疫苗 Comirnaty、个性化癌症疫苗</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> 一个比喻</h2>
+    <div class="analogy">
+      <div class="an ab"><div class="ah">抗体药 = 外卖</div><p>餐厅（工厂）把菜做好，直接送到你家门口，打开就能吃。</p></div>
+      <div class="an rna"><div class="ah">mRNA 药 = 菜谱</div><p>给你一份菜谱（指令），让你在<b>自己家厨房（细胞）</b>里把菜做出来。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> 那 BNT327 属于哪种？</h2>
+    <div class="callout">
+      <div class="ch">◆ BNT327 是抗体药，不是 mRNA 药</div>
+      <p>BNT327 是一款<b>双特异性抗体（重组蛋白）</b>，从中国普米斯收购而来，属于"外卖"那一类——直接注射成品。有意思的反差是：<b>BioNTech 是靠 mRNA 起家的公司，但它押注转型的头号王牌恰恰不是 mRNA 药。</b>这说明 BioNTech 走的是<b>多模态并进</b>，而非 all in mRNA。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span> BioNTech 的多模态版图</h2>
+    <div class="pipe">
+      <div class="pc r"><div class="pt">mRNA · 指令类</div><h4>mRNA 疫苗</h4><p>新冠疫苗、个性化癌症疫苗（新抗原）——公司的起家本行。</p></div>
+      <div class="pc a"><div class="pt">抗体 · 成品类</div><h4>双特异性抗体 <span class="star">核心王牌</span></h4><p>BNT327（PD-L1×VEGF）等——转型的头号资产，蛋白药。</p></div>
+      <div class="pc x"><div class="pt">偶联药 · 成品类</div><h4>ADC 抗体偶联药物</h4><p>抗体挂上化疗"弹头"精准打击肿瘤，也是蛋白类。</p></div>
+      <div class="pc r"><div class="pt">跨界 · mRNA×抗体</div><h4>RiboMab™</h4><p>用 mRNA 在体内编码抗体——把两种模态结合的平台。</p></div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <div class="bh">一句话总结</div>
+    <b class="ab">抗体药</b>是把成品蛋白直接送进去（BNT327 属此类）；<b class="rna">mRNA 药</b>是送指令让身体自己造。BioNTech 靠 mRNA 起家，但转型王牌 BNT327 是抗体药——它走的是<b>多模态并进</b>的路线。
+  </div>
+
+  <p class="disc">⚠️ 本页为科普性信息整理，<b>不构成投资/医疗建议</b>。技术描述为简化说明，实际机制更复杂。来源：BioNTech 公开资料、行业公开知识。截至 2026 年年中。</p>
+</div>
+
+</html>
