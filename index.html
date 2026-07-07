@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioNTech (BNTX) 研究页</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --accent: #0DA6AB; --accent-soft: #0da6ab14;
+    --b: #6D5AE6; --warn: #b8791a;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --accent: #2fc0c4; --accent-soft: #2fc0c41c; --b: #9b8bff; --warn: #e0a63e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 56px 22px 72px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.1; margin: 0 0 10px; letter-spacing: -.02em; }
+  h1 .tick { color: var(--ink-3); font-weight: 500; }
+  .lede { font-size: 16px; color: var(--ink-2); max-width: 58ch; margin: 0 0 8px; }
+  .meta { font-size: 12.5px; color: var(--ink-3); margin-bottom: 40px; }
+  .cards { display: flex; flex-direction: column; gap: 16px; }
+  a.card { display: flex; gap: 18px; align-items: flex-start; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; }
+  a.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  a.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ico { font-size: 30px; line-height: 1; flex-shrink: 0; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); border-radius: 13px; }
+  .card .body { flex: 1; }
+  .card .num { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: .04em; }
+  .card h2 { margin: 4px 0 5px; font-size: 19px; letter-spacing: -.01em; }
+  .card p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .card .go { align-self: center; color: var(--ink-3); font-size: 22px; flex-shrink: 0; }
+  .disc { margin-top: 40px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">研究页 · 生物科技</span>
+  <h1>BioNTech <span class="tick">SE · BNTX</span></h1>
+  <p class="lede">一个「厚现金 + 高赔率肿瘤期权」的转型标的——三份可视化简报，从整体到核心药物再到竞品对决。</p>
+  <div class="meta">数据截至 2026 年年中 · 本页仅为信息整理，不构成投资/医疗建议</div>
+
+  <div class="cards">
+    <a class="card" href="overview.html">
+      <div class="ico">🧬</div>
+      <div class="body">
+        <div class="num">01 — 公司总览</div>
+        <h2>BNTX 投资分析看板</h2>
+        <p>股价与目标价区间、与 Moderna 转型路径对比、双抗赛道格局、12 个月催化剂时间表、风险回报结论。</p>
+      </div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="bnt327.html">
+      <div class="ico">💊</div>
+      <div class="body">
+        <div class="num">02 — 核心药物</div>
+        <h2>BNT327 (pumitamig) 专题</h2>
+        <p>双重作用机制、从普米斯到 BMS 的全球权益来源、合作条款拆解、适应症与 III 期试验进度。</p>
+      </div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="versus.html">
+      <div class="ico">⚔️</div>
+      <div class="body">
+        <div class="num">03 — 竞品对决</div>
+        <h2>BNT327 vs 依沃西单抗</h2>
+        <p>逐项对比机制、获批进度、肺癌战场与卡位策略；谁在哪领先，以及「分区共存」的底线判断。</p>
+      </div>
+      <div class="go">→</div>
+    </a>
+  </div>
+
+  <p class="disc">⚠️ 本页内容基于公开资料整理（MarketBeat、BioNTech / BMS 投资者关系、BioSpace、OncLive、The Lancet 等），截至 2026 年年中，可能存在时滞。<b>不构成投资或医疗建议</b>，跨试验数据非头对头，不可直接横向比较疗效。</p>
+</div>
+</body>
+</html>

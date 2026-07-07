@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BNT327 vs 依沃西单抗 正面对比</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --a: #0DA6AB; --a-soft: #0da6ab14; --a-line: #0da6ab40;
+    --b: #6D5AE6; --b-soft: #6d5ae614; --b-line: #6d5ae640;
+    --good: #17825a; --warn: #b8791a;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+      --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+      --line: #2c322f; --line-2: #242a28;
+      --a: #2fc0c4; --a-soft: #2fc0c41c; --a-line: #2fc0c455; --b: #9b8bff; --b-soft: #9b8bff1c; --b-line: #9b8bff55;
+      --good: #34c98a; --warn: #e0a63e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #131615; --panel: #1b1f1e; --panel-2: #232827;
+    --ink: #eef1ef; --ink-2: #b3bcb9; --ink-3: #808a87;
+    --line: #2c322f; --line-2: #242a28;
+    --a: #2fc0c4; --a-soft: #2fc0c41c; --a-line: #2fc0c455; --b: #9b8bff; --b-soft: #9b8bff1c; --b-line: #9b8bff55;
+    --good: #34c98a; --warn: #e0a63e;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"] {
+    --surface: #fcfcfb; --panel: #ffffff; --panel-2: #f4f5f4;
+    --ink: #16201f; --ink-2: #46514f; --ink-3: #6f7a78;
+    --line: #e2e5e3; --line-2: #eceeec;
+    --a: #0DA6AB; --a-soft: #0da6ab14; --a-line: #0da6ab40; --b: #6D5AE6; --b-soft: #6d5ae614; --b-line: #6d5ae640;
+    --good: #17825a; --warn: #b8791a;
+    --shadow: 0 1px 2px rgba(20,32,31,.04), 0 8px 24px rgba(20,32,31,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 40px 22px 72px; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  .head { text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 12px; }
+  h1 { font-size: clamp(24px, 4.5vw, 36px); line-height: 1.15; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  h1 .va { color: var(--a); } h1 .vb { color: var(--b); }
+  h1 .vs { color: var(--ink-3); font-weight: 500; margin: 0 10px; font-size: .8em; }
+  .sub { font-size: 14.5px; color: var(--ink-2); margin: 14px auto 0; max-width: 60ch; }
+
+  /* identity cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; position: relative; }
+  .vsbadge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; width: 46px; height: 46px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--ink-2); box-shadow: var(--shadow); }
+  .idc { border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--panel); }
+  .idc.a { border-top: 3px solid var(--a); }
+  .idc.b { border-top: 3px solid var(--b); }
+  .idc .role { font-size: 11.5px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+  .idc.a .role { color: var(--a); } .idc.b .role { color: var(--b); }
+  .idc h2 { margin: 8px 0 2px; font-size: 21px; letter-spacing: -.01em; }
+  .idc .gen { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); margin-bottom: 12px; }
+  .idc .kv { display: flex; flex-direction: column; gap: 9px; }
+  .idc .kv div { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; border-bottom: 1px solid var(--line-2); padding-bottom: 8px; }
+  .idc .kv div:last-child { border-bottom: none; padding-bottom: 0; }
+  .idc .kv .k { color: var(--ink-3); }
+  .idc .kv .val { font-weight: 650; text-align: right; }
+
+  section { margin: 32px 0; }
+  h3.sec { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+
+  /* comparison matrix */
+  .matrix { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+  .row { display: grid; grid-template-columns: 1fr 130px 1fr; align-items: stretch; border-bottom: 1px solid var(--line-2); }
+  .row:last-child { border-bottom: none; }
+  .row .dim { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); background: var(--panel-2); padding: 14px 8px; }
+  .row .side { padding: 14px 18px; font-size: 13.5px; color: var(--ink-2); display: flex; align-items: center; }
+  .row .side.a { border-left: 3px solid var(--a-line); }
+  .row .side.b { border-right: 3px solid var(--b-line); text-align: right; justify-content: flex-end; }
+  .row .side b { color: var(--ink); }
+  .win { position: relative; }
+  .win.a { background: var(--a-soft); }
+  .win.b { background: var(--b-soft); }
+  .lead-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
+  .side.b .lead-tag { margin-left: 0; margin-right: 8px; order: -1; }
+  .lead-tag.a { color: var(--a); background: var(--a-soft); border: 1px solid var(--a-line); }
+  .lead-tag.b { color: var(--b); background: var(--b-soft); border: 1px solid var(--b-line); }
+
+  /* scoreboard */
+  .board { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bcard { border-radius: 16px; padding: 20px 22px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--panel); }
+  .bcard.a { border-left: 3px solid var(--a); }
+  .bcard.b { border-left: 3px solid var(--b); }
+  .bcard .bh { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .bcard.a .bh { color: var(--a); } .bcard.b .bh { color: var(--b); }
+  .bcard .bs { font-size: 12.5px; color: var(--ink-3); margin-bottom: 12px; }
+  .bcard ul { margin: 0; padding-left: 17px; }
+  .bcard li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 7px; }
+  .bcard li:last-child { margin-bottom: 0; }
+  .bcard li b { color: var(--ink); }
+
+  .takeaway { margin-top: 20px; padding: 18px 22px; background: var(--panel-2); border-radius: 14px; font-size: 14.5px; color: var(--ink); border: 1px solid var(--line); }
+  .takeaway .th { font-weight: 700; margin-bottom: 6px; }
+  .takeaway b.a { color: var(--a); } .takeaway b.b { color: var(--b); }
+
+  .disc { margin-top: 30px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.7; }
+
+  @media (max-width: 720px) {
+    .cards { grid-template-columns: 1fr; }
+    .vsbadge { display: none; }
+    .row { grid-template-columns: 1fr; }
+    .row .dim { justify-content: flex-start; text-align: left; }
+    .row .side.a { border-left: none; border-top: 2px solid var(--a-line); }
+    .row .side.b { border-right: none; border-bottom: 2px solid var(--b-line); text-align: left; justify-content: flex-start; }
+    .side.b .lead-tag { order: 0; margin-left: 8px; margin-right: 0; }
+    .board { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">PD-(L)1 × VEGF 双抗赛道 · 正面对决</div>
+    <h1><span class="va">BNT327</span><span class="vs">VS</span><span class="vb">依沃西单抗</span></h1>
+    <p class="sub">同一条最热赛道的两大主角——机制路径相似、卡位策略迥异。谁领跑、谁差异化、最终会不会共存？</p>
+  </header>
+
+  <div class="cards">
+    <div class="vsbadge">VS</div>
+    <div class="idc a">
+      <div class="role">◆ 挑战者 / 差异化卡位</div>
+      <h2>BNT327</h2>
+      <div class="gen">pumitamig · BioNTech + BMS</div>
+      <div class="kv">
+        <div><span class="k">靶点</span><span class="val">PD-L1 × VEGF-A</span></div>
+        <div><span class="k">绑定位点</span><span class="val">肿瘤上的配体 PD-L1</span></div>
+        <div><span class="k">开发方</span><span class="val">德国 + 美国药企</span></div>
+        <div><span class="k">获批状态</span><span class="val">全球 III 期 · 尚无获批</span></div>
+      </div>
+    </div>
+    <div class="idc b">
+      <div class="role">◆ 领跑者 / 首证在手</div>
+      <h2>依沃西单抗</h2>
+      <div class="gen">ivonescimab · 康方 Akeso + Summit</div>
+      <div class="kv">
+        <div><span class="k">靶点</span><span class="val">PD-1 × VEGF</span></div>
+        <div><span class="k">绑定位点</span><span class="val">T 细胞上的受体 PD-1</span></div>
+        <div><span class="k">开发方</span><span class="val">中国 + 美国药企</span></div>
+        <div><span class="k">获批状态</span><span class="val">中国已获批 · FDA 审评中</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h3 class="sec">逐项对比</h3>
+    <div class="matrix">
+      <div class="row">
+        <div class="side a">绑 <b>PD-L1</b>（肿瘤端），意在把抗 VEGF 活性定位于肿瘤微环境，减少全身暴露</div>
+        <div class="dim">机制路径</div>
+        <div class="side b">绑 <b>PD-1</b>（T 细胞端），四价结构下 VEGF 存在时对 PD-1 亲和力提升约 18 倍</div>
+      </div>
+      <div class="row">
+        <div class="side a">全球 III 期在研，<b>尚无任何获批</b></div>
+        <div class="dim">获批进度</div>
+        <div class="side b win b"><span class="lead-tag b">领先</span>中国已获批一线 PD-L1+ NSCLC；<b>FDA 2026年11月</b>决定</div>
+      </div>
+      <div class="row">
+        <div class="side a">早期数据亮眼，但肺癌上<b>落后于对手</b></div>
+        <div class="dim">肺癌战场</div>
+        <div class="side b win b"><span class="lead-tag b">领先</span>唯一头对头<b>击败 K 药</b>(HARMONi-2)；HARMONi-6 OS 显著获益(HR 0.66)</div>
+      </div>
+      <div class="row">
+        <div class="side a win a"><b>TNBC ORR 73.8%</b> · SCLC 响应率 85% · 布局广<span class="lead-tag a">领先</span></div>
+        <div class="dim">肺癌外<br>癌种</div>
+        <div class="side b">主要精力仍在肺癌，其他实体瘤布局相对靠后</div>
+      </div>
+      <div class="row">
+        <div class="side a win a"><b>50/50 全球分成</b> + BMS 顶级背书 + BioNTech €172亿现金<span class="lead-tag a">领先</span></div>
+        <div class="dim">资源 /<br>背书</div>
+        <div class="side b">Summit 负责海外，体量与现金实力相对较小</div>
+      </div>
+      <div class="row">
+        <div class="side a">避开肺癌红海，主攻<b>乳腺 / 小细胞肺癌 / 结直肠 / 肝</b></div>
+        <div class="dim">卡位策略</div>
+        <div class="side b">以<b>肺癌</b>为根据地，凭首证向全球市场扩张</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="sec">谁在哪领先</h3>
+    <div class="board">
+      <div class="bcard b">
+        <div class="bh">依沃西单抗 · 先发优势</div>
+        <div class="bs">时间与证据都更早一步</div>
+        <ul>
+          <li>唯一有<b>头对头击败 K 药</b>的历史性数据，引爆整个赛道</li>
+          <li>中国<b>已商业化</b>，FDA 决定临近，进度实打实领先</li>
+          <li>HARMONi-6 拿到<b>总生存(OS)获益</b>——最硬的终点</li>
+          <li>风险：全球化销售与产能仍需 Summit 证明</li>
+        </ul>
+      </div>
+      <div class="bcard a">
+        <div class="bh">BNT327 · 后发厚势</div>
+        <div class="bs">用差异化和资源换空间</div>
+        <ul>
+          <li>不打肺癌红海，抢占<b>乳腺/SCLC/结直肠/肝</b>等地盘</li>
+          <li><b>BMS 50/50 背书</b> + BioNTech 巨额现金，弹药充足</li>
+          <li>20+ 试验、10+ 适应症,布局最宽</li>
+          <li>风险：<b>尚无获批</b>,一切押在 III 期数据兑现</li>
+        </ul>
+      </div>
+    </div>
+    <div class="takeaway">
+      <div class="th">底线判断：大概率不是"你死我活",而是分区共存</div>
+      <b class="b">依沃西单抗</b>在肺癌已建立难以撼动的先发身位;<b class="a">BNT327</b> 聪明地绕开正面战场,靠 BMS 背书和更宽的适应症布局去抢肺癌之外的增量。真正的胜负手,是各自 III 期能否在自己主打的癌种上拿到<b>总生存获益</b>——这也是 BNTX 股价的唯一决定性变量。
+    </div>
+  </section>
+
+  <p class="disc">
+    ⚠️ 本页为信息整理,<b>不构成投资/医疗建议</b>。两药机制、试验与获批信息为公开披露内容,截至 2026 年年中,可能存在时滞或后续修订;跨试验数据非头对头,不可直接横向比较疗效。来源:OncLive、Cancer Therapy Advisor、The Lancet(HARMONi-6)、BMS / BioNTech 投资者关系、BioSpace 等。
+  </p>
+</div>
+
+</html>
